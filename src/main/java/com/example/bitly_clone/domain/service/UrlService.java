@@ -6,7 +6,10 @@ import com.example.bitly_clone.domain.service.mappers.UrlMapper;
 import com.example.bitly_clone.web.models.UrlRequest;
 import com.example.bitly_clone.web.models.UrlResponse;
 import io.seruco.encoding.base62.Base62;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -25,6 +28,8 @@ public class UrlService {
 
     private UrlRepo urlRepo;
     private UrlMapper urlMapper;
+    private ClickService clickService;
+    @CacheEvict(value = "urls",key = "#result.shortUrl",condition = "#result!=null")
     public UrlResponse shortenUrl(UrlRequest urlRequest) throws Exception{
         String longUrl = urlRequest.getLongUrl();
 //      Validate syntax
@@ -56,13 +61,16 @@ public class UrlService {
 
 
     }
-    public String getUrl(String shortCode) {
+    @Cacheable(value = "urls", key = "#shortCode")
+    public String getUrl(String shortCode, HttpServletRequest request) throws Exception {
         Urls url = urlRepo.findByShortUrl(shortCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "URL not found"));
 
         if (url.getExpiresAt() != null && url.getExpiresAt().isBefore(LocalDateTime.now())) {
             throw new ResponseStatusException(HttpStatus.GONE, "URL expired");
         }
+        clickService.recordClick(shortCode, request);
+
 
         return url.getOriginalUrl();
     }

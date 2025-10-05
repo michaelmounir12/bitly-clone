@@ -8,7 +8,6 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface UrlMapper {
-    @Mapping(target = "clicks", ignore = true)
     UrlResponse urlToUrlResponse(Urls url);
 }
 

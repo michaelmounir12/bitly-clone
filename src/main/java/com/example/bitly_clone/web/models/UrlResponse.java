@@ -11,5 +11,4 @@ public class UrlResponse {
     private String originalUrl;
     private LocalDateTime createdAt;
     private LocalDateTime expiresAt;
-    private long clicks;
 }
