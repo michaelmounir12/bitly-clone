@@ -1,6 +1,8 @@
 package com.example.bitly_clone.domain.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -9,8 +11,10 @@ import java.util.List;
 @Entity
 @Table(name = "urls", indexes = {
         @Index(name = "idx_short_url", columnList = "shortUrl", unique = true),
-        @Index(name = "idx_expires_at", columnList = "expires_at")
+        @Index(name = "idx_original_url", columnList = "originalUrl",unique = true)
 })
+@Getter
+@Setter
 public class Urls {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +23,7 @@ public class Urls {
     @Column(name = "original_url", nullable = false, columnDefinition = "TEXT")
     private String originalUrl;
 
-    @Column(name = "short_url", nullable = false, unique = true, length = 15)
+    @Column(name = "short_url",  unique = true)
     private String shortUrl;
 
     @CreationTimestamp

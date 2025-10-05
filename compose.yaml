@@ -1,13 +1,27 @@
+version: "3.9"
 services:
-  mongodb:
-    image: 'mongo:latest'
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    restart: always
     environment:
-      - 'MONGO_INITDB_DATABASE=mydatabase'
-      - 'MONGO_INITDB_ROOT_PASSWORD=secret'
-      - 'MONGO_INITDB_ROOT_USERNAME=root'
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: bitly_clone
     ports:
-      - '27017'
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
   redis:
-    image: 'redis:latest'
+    image: redis:7.2
+    container_name: redis
+    restart: always
     ports:
-      - '6379'
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:

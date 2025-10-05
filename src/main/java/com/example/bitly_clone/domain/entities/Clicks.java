@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
 
@@ -14,6 +16,8 @@ import java.time.LocalDateTime;
         @Index(name = "idx_url_id", columnList = "url_id"),
         @Index(name = "idx_clicked_at", columnList = "clicked_at")
 })
+@Getter
+@Setter
 public class Clicks {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,8 +37,6 @@ public class Clicks {
     @Column(name = "user_agent", columnDefinition = "TEXT")
     private String userAgent;
 
-    @Column(name = "referrer", columnDefinition = "TEXT")
-    private String referrer;
 
     @Column(name = "country", length = 100)
     private String country;
