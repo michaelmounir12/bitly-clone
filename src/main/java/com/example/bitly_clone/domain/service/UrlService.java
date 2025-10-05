@@ -29,6 +29,7 @@ public class UrlService {
     private UrlRepo urlRepo;
     private UrlMapper urlMapper;
     private ClickService clickService;
+    private ClickLimiterService clickLimiterService;
     @CacheEvict(value = "urls",key = "#result.shortUrl",condition = "#result!=null")
     public UrlResponse shortenUrl(UrlRequest urlRequest) throws Exception{
         String longUrl = urlRequest.getLongUrl();
@@ -62,17 +63,27 @@ public class UrlService {
 
     }
     @Cacheable(value = "urls", key = "#shortCode")
-    public String getUrl(String shortCode, HttpServletRequest request) throws Exception {
+    public String getOriginalUrl(String shortCode) {
         Urls url = urlRepo.findByShortUrl(shortCode)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "URL not found"));
 
         if (url.getExpiresAt() != null && url.getExpiresAt().isBefore(LocalDateTime.now())) {
             throw new ResponseStatusException(HttpStatus.GONE, "URL expired");
         }
-        clickService.recordClick(shortCode, request);
-
 
         return url.getOriginalUrl();
+    }
+
+    public String handleRedirect(String shortCode, HttpServletRequest request) throws Exception {
+        String originalUrl = getOriginalUrl(shortCode);
+
+        if (!clickLimiterService.registerClick(shortCode, request.getRemoteAddr())) {
+            throw new Exception("click limit exceeded");
+        }
+
+        clickService.recordClick(shortCode, request);
+
+        return originalUrl;
     }
 
     public boolean isValidUrl(String url) {

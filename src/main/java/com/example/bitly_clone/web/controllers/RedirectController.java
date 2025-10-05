@@ -19,7 +19,7 @@ public class RedirectController {
 
     @GetMapping("/{shortCode}")
     public ResponseEntity<Void> redirect(@PathVariable String shortCode, HttpServletRequest request) throws Exception {
-        String longUrl = urlService.getUrl(shortCode, request);
+        String longUrl = urlService.handleRedirect(shortCode, request);
         return ResponseEntity.status(HttpStatus.FOUND)
                 .location(URI.create(longUrl))
                 .build();
