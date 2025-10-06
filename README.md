@@ -80,11 +80,11 @@ Docker Compose spins up all services easily.
 
 🖼️ Screenshots / Demo
 
-<img width="957" height="377" alt="bitlyclone 2" src="https://github.com/user-attachments/assets/98ff03aa-7a8c-40c4-8387-b1dae3392513" />
-
-<img width="938" height="368" alt="bitly clone3" src="https://github.com/user-attachments/assets/91e6f17d-b03e-466e-aff8-08039397356c" />
 
 
+<img width="957" height="377" alt="bitlyclone 2" src="https://github.com/user-attachments/assets/537b9c08-eb7a-4e4e-bc95-6a082547c384" />
+
+<img width="938" height="368" alt="bitly clone3" src="https://github.com/user-attachments/assets/43de3b1f-b542-4502-9dd4-d558fad6f1b0" />
 
 
 🧑‍💻 Author
@@ -98,4 +98,5 @@ Michael Mounir
 🌐 LinkedIn Profile
 
 https://www.linkedin.com/in/michael-william-073092252/
+
 
