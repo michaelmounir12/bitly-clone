@@ -10,7 +10,7 @@ import java.time.Duration;
 public class ClickLimiterService {
 
     private static final String CLICK_KEY_PREFIX = "url_clicks:";
-    private static final int MAX_CLICKS = 5;
+    private static final int MAX_CLICKS = 100;
 
     @Autowired
     private StringRedisTemplate redisTemplate;

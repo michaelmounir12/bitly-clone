@@ -1,5 +1,22 @@
 version: "3.9"
+
 services:
+  app:
+    build: .
+    container_name: bitly_clone_app
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/bitly_clone
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: secret
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+    depends_on:
+      - postgres
+      - redis
+    restart: always
+
   postgres:
     image: postgres:16
     container_name: postgres
