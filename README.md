@@ -11,7 +11,7 @@ Users can shorten URLs, track clicks, and prevent abuse using a Redis-based rate
 
 ## Archticture diagram 
 
-<img width="1024" height="1024" alt="bitly arch" src="https://github.com/user-attachments/assets/12747d6e-d2e7-4cd8-8c94-8f015f5f547a" />
+<img width="817" height="552" alt="Screenshot 2026-01-21 004741" src="https://github.com/user-attachments/assets/1caf3095-547a-4dfc-9fcc-854369e1c86b" />
 
 
 
@@ -103,4 +103,5 @@ Your app will be available at 👉 http://localhost:5173
 🎓 Computer Science @ Ain Shams University  
 💼 Aspiring Backend Engineer  
 🌐 [LinkedIn Profile](https://www.linkedin.com/in/michael-william-073092252/)
+
 
