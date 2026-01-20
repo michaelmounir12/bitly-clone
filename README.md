@@ -9,6 +9,12 @@ Users can shorten URLs, track clicks, and prevent abuse using a Redis-based rate
 
 ---
 
+## Archticture diagram 
+
+<img width="1024" height="1024" alt="bitly arch" src="https://github.com/user-attachments/assets/12747d6e-d2e7-4cd8-8c94-8f015f5f547a" />
+
+
+
 ## 🚀 Features
 - ✅ Shorten long URLs into compact links  
 - ✅ Redirect users automatically via short codes  
@@ -97,3 +103,4 @@ Your app will be available at 👉 http://localhost:5173
 🎓 Computer Science @ Ain Shams University  
 💼 Aspiring Backend Engineer  
 🌐 [LinkedIn Profile](https://www.linkedin.com/in/michael-william-073092252/)
+
