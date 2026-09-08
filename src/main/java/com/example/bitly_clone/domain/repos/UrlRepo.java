@@ -1,6 +1,7 @@
 package com.example.bitly_clone.domain.repos;
 
 import com.example.bitly_clone.domain.entities.Urls;
+import org.reactivestreams.Publisher;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

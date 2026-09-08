@@ -48,7 +48,6 @@ public class UrlService {
         if(existing.isPresent()) {
            return urlMapper.urlToUrlResponse(existing.get());
         }
-        System.out.println(longUrl);
         Urls url = new Urls();
         url.setOriginalUrl(longUrl);
         url.setExpiresAt(LocalDateTime.now().plusYears(1));
